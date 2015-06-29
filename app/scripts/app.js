@@ -51,6 +51,26 @@ angular.module('starter', ['ionic','ngCordova', 'uiGmapgoogle-maps'])
     //map options
     $scope.opts = {scrollwheel: false, disableDefaultUI: true};
     $scope.markers = [];
+
+    $scope.putMarkers = function (){
+        var lat = $scope.map.center.latitude;
+        var long = $scope.map.center.longitude;
+        for(var i=0; i<5; i++) {
+          $scope.markers.push({
+              id: $scope.markers.length,
+              latitude: lat + (i * 0.0002),
+              longitude: long + (i * 0.0003),
+              icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+              options: {
+                visible:true,
+                title:'ma' + i,
+                labelContent: 'm' + i
+              }
+
+          });
+        }      
+    };
+
     $cordovaGeolocation.getCurrentPosition(). then(
       function (position){
         var lat  = position.coords.latitude;
@@ -65,22 +85,4 @@ angular.module('starter', ['ionic','ngCordova', 'uiGmapgoogle-maps'])
         $scope.map = {center: {latitude: lat, longitude: long}, zoom: 16 };
       });
 
-    $scope.putMarkers = function (){
-        var lat = $scope.map.center.latitude;
-        var long = $scope.map.center.longitude;
-        for(var i=0; i<5; i++) {
-          console.log('latitude:' + (lat + (i * 0.002)));
-          $scope.markers.push({
-              id: $scope.markers.length,
-              latitude: lat + (i * 0.002),
-              longitude: long + (i * 0.002),
-              icon: 'img/ionic.png',
-              options: {
-                visible:true,
-                labelContent: 'm' + i
-              }
-
-          });
-        }      
-    }
 }]);

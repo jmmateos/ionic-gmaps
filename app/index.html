@@ -42,14 +42,15 @@
   </head>
   <body ng-app="starter">
 
-    <ion-pane>
+    <ion-pane  ng-controller="MapaCtrl">
       <ion-header-bar class="bar-stable">
         <h1 class="title">Ionic Google Maps</h1>
+        <button class="button" ng-click="putMarkers()">Markers</button>
       </ion-header-bar>
-      <ion-content ng-controller="MapaCtrl">
+      <ion-content>
         <div id="map_canvas">
            <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="opts" control="map.control">
-            <ui-gmap-markers  models='markers' coords="'self'"></ui-gmap-markers>
+            <ui-gmap-markers  models="markers" icon="'icon'" options="'options'" coords="'self'"></ui-gmap-markers>
           </ui-gmap-google-map>
         </div>      
       </ion-content>
